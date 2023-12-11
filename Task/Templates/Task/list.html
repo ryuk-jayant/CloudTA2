@@ -149,13 +149,13 @@
 </head>
 <body>
     {% load static %}
-	<div class="background" style="background:url({% static 'images/li.jpg' %})"> 
+	<div class="background" style="background-image:url({% static 'images/li.jpg' %});"> 
 		<div class="alfred">
 		<h1>ALFRED</h1>
 		<div class="navigation">
 			<ul>
 				<li>
-                    {% if user %}
+                    {% if bool %}
                     <p>Welcome Dear,{{user}}</p>
                     {% else %}
                     <a href="/login">Login</a></li>
@@ -165,7 +165,7 @@
 		</div>
 	</div>
 	<div class="text">
-        {% if user %}
+        {% if bool %}
         <h1>Welcome {{user}} To task scheduler</h1>
 		<p style="font-size: 20px;">Your task list</p>
         {% else %}
@@ -173,13 +173,14 @@
 		<p>You can schedule your all tasks here and save them</p>
         {%endif%}
 		
+		{% if bool%}
 		{% for task in tasks %}
 		{% if task.T_priority|length < 4%}
-        <div class="drop text-green-500"> > {{task.T_name}}
+        <div class="drop bg-green-500 rounded-full w-[40vw]"> > {{task.T_name}}
 		{% elif task.T_priority|length > 4%}
-		<div class="drop text-yellow-600"> > {{task.T_name}}
+		<div class="drop bg-yellow-600 rounded-full w-[60vw]"> > {{task.T_name}}
 		{% else%}
-		<div class="drop text-red-600"> > {{task.T_name}}
+		<div class="drop bg-red-600 rounded-full "> > {{task.T_name}}
 		{%endif%}
 		<div class="content">
 			<p>{{task.T_desc}}</p>
@@ -188,5 +189,9 @@
 		</div>
 	</div>
         {% endfor%}
+
+	{% else%}
+	
+	{%endif%}	
 </body>
 </html>

@@ -6,8 +6,12 @@ def Hello(request):
     return render(request,"Task/hello.html",{"info":name})
 
 def Tasklist(request):
-    Tasks=Task.objects.filter(Person=request.user).order_by('T_priority')
-    return render(request,"Task/list.html",{'tasks':Tasks,'user':request.user})
+    if(str(request.user)!="AnonymousUser"):
+        Tasks=Task.objects.filter(Person=request.user).order_by('T_priority')
+        return render(request,"Task/list.html",{'bool':True,'tasks':Tasks,'user':request.user})
+    else:
+        Tasks=[{}]
+        return render(request,"Task/list.html",{'boo':False,'tasks':Tasks})
 
 def add_task(request):
     if request.method=="POST":
@@ -22,5 +26,7 @@ def add_task(request):
     return render(request,"Task/add_task.html",{})
 
 def done_task(request,pk):
-    print(pk)
+    task=Task.objects.get(pk=pk)
+    task.delete()
+    print(task)
     return redirect('task list')
