@@ -11,7 +11,7 @@ def Tasklist(request):
         return render(request,"Task/list.html",{'bool':True,'tasks':Tasks,'user':request.user})
     else:
         Tasks=[{}]
-        return render(request,"Task/list.html",{'boo':False,'tasks':Tasks})
+        return render(request,"Task/list.html",{'bool':False,'tasks':Tasks})
 
 def add_task(request):
     if request.method=="POST":
