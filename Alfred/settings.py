@@ -55,7 +55,7 @@ ROOT_URLCONF = "Alfred.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": ['/home/RyukJayant/ryukjayant.pythonanywhere.com/Task/templates'],
+        "DIRS": ['/home/RyukJayant/ryukjayant.pythonanywhere.com/Task/templates','/home/RyukJayant/ryukjayant.pythonanywhere.com/Task/Templates'],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
